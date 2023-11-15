@@ -1,5 +1,5 @@
 :root {
-  --shadow: rgba(0, 0, 0, 0.8)
+  --shadow: rgba(0, 0, 0, 0.8);
 }
 
 * {
@@ -16,6 +16,7 @@ body {
 }
 
 .slider-container {
+  touch-action: none;
   height: 100vh;
   display: inline-flex;
   overflow: hidden;
@@ -36,7 +37,7 @@ body {
   position: relative;
 }
 
-@media(min-width: 1200px) {
+@media (min-width: 1200px) {
   .slide {
     padding: 3rem;
   }
