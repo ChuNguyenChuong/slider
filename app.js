@@ -31,6 +31,7 @@ window.oncontextmenu = function (event) {
 
 function pointerDown(index) {
   return function (event) {
+    console.log("pointerDown");
     currentIndex = index;
     startPos = event.clientX;
     isDragging = true;
@@ -40,13 +41,18 @@ function pointerDown(index) {
 }
 
 function pointerMove(event) {
-  if (isDragging) {
+  if (isDragging && event.clientX) {
+    console.log("pointerMove");
     const currentPosition = event.clientX;
+    console.log("currentPosition", currentPosition);
+
     currentTranslate = prevTranslate + currentPosition - startPos;
   }
 }
 
 function pointerUp() {
+  console.log("pointerUp");
+
   cancelAnimationFrame(animationID);
   isDragging = false;
   const movedBy = currentTranslate - prevTranslate;
@@ -55,8 +61,12 @@ function pointerUp() {
   setPositionByIndex();
   slider.classList.remove("grabbing");
 
-  currentIndex === 0 ? pre.classList.add("not-allow") : pre.classList.remove("not-allow");
-  currentIndex === slides.length - 1 ? next.classList.add("not-allow") : next.classList.remove("not-allow");
+  currentIndex === 0
+    ? pre.classList.add("not-allow")
+    : pre.classList.remove("not-allow");
+  currentIndex === slides.length - 1
+    ? next.classList.add("not-allow")
+    : next.classList.remove("not-allow");
 }
 
 function animation() {
